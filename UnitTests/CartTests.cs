@@ -115,7 +115,7 @@ namespace UnitTests
             // przygotowanie — utworzenie koszyka
             Cart cart = new Cart();
             // przygotowanie — utworzenie kontrolera
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
             // działanie — dodanie produktu do koszyka
             target.AddToCart(cart, 1, null);
             // asercje
@@ -134,7 +134,7 @@ namespace UnitTests
             // przygotowanie — utworzenie koszyka
             Cart cart = new Cart();
             // przygotowanie — utworzenie kontrolera
-            CartController target = new CartController(mock.Object);
+            CartController target = new CartController(mock.Object, null);
             // działanie — dodanie produktu do koszyka
             RedirectToRouteResult result = target.AddToCart(cart, 2, "myUrl");
             // asercje
@@ -148,7 +148,7 @@ namespace UnitTests
             // przygotowanie — utworzenie koszyka
             Cart cart = new Cart();
             // przygotowanie — utworzenie kontrolera
-            CartController target = new CartController(null);
+            CartController target = new CartController(null, null);
             // działanie — wywołanie metody akcji Index
             CartIndexViewModel result = (CartIndexViewModel)target.Index(cart, "myUrl").ViewData.Model;
             // asercje
