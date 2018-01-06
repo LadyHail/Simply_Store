@@ -41,5 +41,22 @@ namespace WebUI.Controllers
                 return View(product);
             }
         }
+
+        public ViewResult Create()
+        {
+            return View("Edit", new Product());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int ProductId)
+        {
+            Product deletedProduct = repository.DeleteProduct(ProductId);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("Usunięto {0} ", deletedProduct.Name);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
