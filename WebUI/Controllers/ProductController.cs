@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Domain.Abstract;
+using Domain.Entities;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -36,6 +37,19 @@ namespace WebUI.Controllers
                 CurrentCategory = category
             };
             return View(viewModel);
+        }
+
+        public FileContentResult GetImage(int productId)
+        {
+            Product prod = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            if (prod != null)
+            {
+                return File(prod.ImageData, prod.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
